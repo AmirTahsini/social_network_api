@@ -1,6 +1,25 @@
 const { Schema, model } = require('mongoose');
 
-const reactionSchema = {};
+const reactionSchema = new Schema({
+  reactionId: {
+    type: Schema.Types.ObjectId,
+    default: () => new Types.ObjectId(),
+  },
+  reactionBody: {
+    type: String,
+    required: true,
+    maxlength: 280,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    //add getter method to format the timestamp on query
+  },
+});
 
 const thoughtSchema = new Schema(
   {
@@ -13,6 +32,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      //add getter method to format the timestamp on query
     },
     username: {
       type: String,
@@ -35,4 +55,4 @@ postSchema.virtual('reactionCount').get(function () {
 
 const Thought = model('thought', thoughtSchema);
 
-module.exports = User;
+module.exports = Thought;
