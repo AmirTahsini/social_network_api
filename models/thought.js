@@ -1,4 +1,5 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
+const dayJS = require('dayjs');
 
 const reactionSchema = new Schema({
   reactionId: {
@@ -17,7 +18,9 @@ const reactionSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    //add getter method to format the timestamp on query
+    get: (date) => {
+      return dayJS(date).format('DD-MM-YY');
+    },
   },
 });
 
@@ -32,7 +35,9 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      //add getter method to format the timestamp on query
+      get: (date) => {
+        return dayJS(date).format('DD-MM-YY');
+      },
     },
     username: {
       type: String,
@@ -49,7 +54,7 @@ const thoughtSchema = new Schema(
   }
 );
 
-postSchema.virtual('reactionCount').get(function () {
+thoughtSchema.virtual('reactionCount').get(function () {
   return this.reactions.length;
 });
 

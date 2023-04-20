@@ -12,6 +12,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
+      match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/i,
     },
     thoughts: [
       {
@@ -35,7 +36,7 @@ const userSchema = new Schema(
   }
 );
 
-postSchema.virtual('friendCount').get(function () {
+userSchema.virtual('friendCount').get(function () {
   return this.friends.length;
 });
 
