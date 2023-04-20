@@ -14,17 +14,14 @@ connection.once('open', async () => {
     {
       username: 'Amir',
       email: 'test@gmail.com',
-      friends: [{ username: 'Mike' }, { username: 'Mary' }],
     },
     {
       username: 'Mike',
       email: 'test1@gmail.com',
-      friends: [{ username: 'Amir' }],
     },
     {
       username: 'Mary',
       email: 'test2@gmail.com',
-      friends: [{ username: 'Amir' }],
     },
   ];
 
