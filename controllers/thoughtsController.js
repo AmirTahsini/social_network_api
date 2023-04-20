@@ -41,7 +41,7 @@ module.exports = {
               { $pull: { thoughts: thought._id } }
             )
       )
-      .then(() => res.json({ message: 'Course and students deleted!' }))
+      .then(() => res.json({ message: 'thought deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
   updateThought(req, res) {
